@@ -1,4 +1,4 @@
-# See the Site: [Machine Learning Course Notes](https://jennselby.github.io/MachineLearningCourseNotes/)
+# See the Site: [Computer Security Course Notes](https://jennselby.github.io/ComputerSecurityCourseNotes/)
 
 To run this locally, use
 ```bundle exec jekyll serve```
