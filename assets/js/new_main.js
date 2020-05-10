@@ -53,9 +53,31 @@ $(function() {
   $('img').on('load', sectionHeight);
 });
 
+var closeEthicsWarning = function() {
+    $("#ethics-warning").css("display", "none");
+}
+
+var doNotShowEthicsWarningAgain = function() {
+    closeEthicsWarning();
+    localStorage.setItem("DoNotShowEthicsWarning", "Yes");
+}
+
+var ethicsWarning = function() {
+    var doNotShowEthicsWarning = localStorage.getItem("DoNotShowEthicsWarning");
+    if (doNotShowEthicsWarning === "Yes") {
+        $("#ethics-warning").css("display", "none");
+    }
+    else {
+        $("#ethics-warning").css("display", "block");
+        $("#ethics-warning-close").click(closeEthicsWarning);
+        $("#ethics-warning-do-not-show").click(doNotShowEthicsWarningAgain);
+    }
+}
+
 $(document).ready(function () {
   // if user came by a direct link to a page section, adjust the page location for them and set
   // active correctly
+  ethicsWarning();
   var internal_href_index = window.location.href.indexOf('#');
   if (internal_href_index != -1) {
     var href = window.location.href.substring(internal_href_index);

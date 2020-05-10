@@ -442,3 +442,26 @@ body {
   height: 1px;
   margin: 0 auto;
 }
+
+.ethics-paragraph {
+    margin: 3vmin;
+}
+
+#ethics-warning {
+    display: none;
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    background-color: #fbfbfb;
+    z-index: 1000;
+    padding: 5vmin;
+    border-radius: 10px;
+    font-size: 4vmin;
+    line-height: 5vmin;
+}
+
+.warning-close {
+    background: #ffcc00;
+}
