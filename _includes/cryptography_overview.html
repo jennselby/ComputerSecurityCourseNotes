@@ -1,0 +1,22 @@
+<h2>Cryptography Overview</h2>
+
+<p><strong>Encryption</strong> is the act of making data hard to decipher unless you have access to some secret information, usually a key. <strong>Decryption</strong> is the act of turning encrypted data back into its original, readable form.</p>
+
+<h3>One-Time Pads</h3>
+<p>This is a symmetric key scheme that is secure no matter how much computational power you have available. The people communicating generate a truly random string of characters, with length equal to the number of characters in the message that they want to send. Then they use some operation (such as exclusive or) to combine each pair of characters -- one from the message and one from the random string. The output can only be decrypted with someone who has that same random string. This string is never used again to encrypt a message; future communication requires new random strings. As long as the secret string really is random, it is kept private, and it is never used again, this scheme is unbreakable.</p>
+
+<p>Take some time to to decide if you buy the claim that this is unbreakable.  Why would reusing the string make it easier to break? If this is unbreakable, why don't we just always use one-time pads?</p>
+
+<h3>Symmetric Key Cryptography</h3>
+<p>In symmetric key cryptography, people who are trying to communicate have a shared secret key. The same key is used to encrypt and decrypt information. Symmetric key algorithms are typically faster than public key algorithms for the same level of security.</p>
+
+<h3>Public Key Cryptography</h3>
+<p>In public key cryptography, each person has a key pair, one of which is made public and the other of which is kept secret. Data encrypted with the public key can only be decrypted with the private key, and data encrypted with the private key can only be encrypted with the public key. (In some systems, it only works in one direction; only one key can be used for encryption and one for decryption.) An advantage of public key cryptography is that the private key does not ever have to be shared with other people in order to use the system, whereas symmetric key cryptography requires that everyone involved has somehow received the key.</p>
+
+<h3>Cryptographic Hashing and Salting</h3>
+<p>A hash is a function that transforms variable-length data into a fixed length. A cryptographically secure hash function is a one-way hash: getting the original input given the hash output is about as hard as just trying every possible input until you get a matching output. It is also very hard to find two or more different inputs that will produce the same hash output. Small changes in the input data result in a large change in the output hash. Hashes are typically used to verify that data you received was not changed from the original: you can take the hash of the data and compare it to the hash of the original. It can also be used to store sensitive information, like a password, so that it can not easily be read but can be verified.</p>
+<p>Salting adds some additional information to the input before hashing it, so that the same input in a different context will still have a different output hash. For instance, you might add time stamps to messages so that identical messages sent at different times have different hashes.</p>
+
+<h3>Cryptographically Secure Random Number Generators</h3>
+<p>A sequence is said to be truly random if there is no shorter way to express the same information other than giving the full sequence. For instance, 1,4,9,16,25,... could be described as "the square of the n<sup>th</sup> integer, and you could easily find the n<sup>th</sup> term without calculating the rest of them. For something like 0323513186846982..., there is no shorter way to express it, and there is no way to guess the next number with better than 1/10 probability, because any number could come next.</p>
+<p>A cryptographically secure random number generator is one in which people with shared secret information can generate the same sequence, but someone without the secret information cannot guess the next number in the sequence even if they have seen all of the numbers that were previously generated.</p>

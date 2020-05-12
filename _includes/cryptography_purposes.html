@@ -1,0 +1,15 @@
+<h2>Cryptography Purposes</h2>
+<p>Generally, use of cryptography falls into one of four categories[1]</p>
+<h3>Authentication</h3>
+<p>This gives you more confidence in the identity of the entity you are exchanging information with. Typically, this means that they prove that they have access to some secret information that you are reasonably sure only they would have.</p>
+
+<h3>Privacy</h3>
+<p>This gives you more confidence that no one other than the intended recipients can read the information being exchanged. Typically, this involves encrypting the message, so that it is hard to read unless you have access to some secret information.</p>
+
+<h3>Integrity</h3>
+<p>This gives you more confidence that the information being exchanged has not been altered in some way. Typically, this involves creating a hash of the information, often signed by with secret information that is likely only known by the legitimate sender.</p>
+
+<h3>Non-Repudiation</h3>
+<p>This gives you more confidence that someone cannot later say that they never sent information that they had in fact sent. Like authentication, this typically involves using secret information that only that person could have had. However, usually you need to include timestamps, because if the secret information is compromised (perhaps by the person who had it legitimately!), any information sent after the time of the compromise can be easily disavowed.</p>
+
+<p>[1] categories from Schneier, Bruce <em>Applied Cryptography: Protocols, Algorithms, and Source Code in C, Second Edition </em>John Wiley &amp; Sons, 1996</p>

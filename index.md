@@ -14,6 +14,10 @@ layout: default
 
 # Cryptography
 
+{% include cryptography_overview.html %}
+
+{% include cryptography_purposes.html %}
+
 # User Input Validation
 
 # Authorization
