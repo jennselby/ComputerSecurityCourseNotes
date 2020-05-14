@@ -1,0 +1,15 @@
+<h2>HTTPS, SSL, and TLS</h2>
+<h3>TLS (Transport Layer Security)</h3>
+<p><a target="_blank" href="https://tools.ietf.org/html/rfc2246">TLS</a> allows for two-way communication that cannot be read or unnoticeably altered (that is, it provides privacy and integrity). It uses symmetric key encryption for privacy and a message authentication code/digital signature for integrity.</p>
+<p>The TLS handshake uses a key exchange algorithm to generate a key for symmetric key encryption. It may authenticate one or both entities communicating, though this is not required.</p>
+<p>For more information, see <a target="_blank" href="https://www.ibm.com/support/knowledgecenter/en/SSFKSJ_7.1.0/com.ibm.mq.doc/sy10660_.htm">this explanation from IBM</a>.</p>
+<h3>SSL (Secure Sockets Layer)</h3>
+<p>This is the old name for TLS. You'll still often see this used.</p>
+<h3>Secure HyperText Transfer Protocol (HTTPS)</h3>
+<p>HTTP is the protocol by which web pages are sent. <a target="_blank" href="https://tools.ietf.org/html/rfc2818">HTTPS</a> uses TLS to provide more security to web communication. When you visit a website with https as the protocol in the URL, the web browser authenticates the site using the site's signed certificate and then performs a key exchange that will allow all future traffic to that site to be encrypted using the key that is created.</p>
+<h3>Sources/For More Information:</h3>
+<ul>
+<li><a target="_blank" href="https://tools.ietf.org/html/rfc2818">https://tools.ietf.org/html/rfc2818</a></li>
+<li><a target="_blank" href="https://tools.ietf.org/html/rfc2246">https://tools.ietf.org/html/rfc2246</a></li>
+<li><a target="_blank" href="http://security.stackexchange.com/questions/5126/whats-the-difference-between-ssl-tls-and-https">http://security.stackexchange.com/questions/5126/whats-the-difference-between-ssl-tls-and-https</a></li>
+</ul>
