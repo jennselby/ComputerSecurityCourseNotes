@@ -1,0 +1,103 @@
+<h2>SHA-256</h2>
+<p>This is a simplified explanation of the <strong>SHA-256</strong> algorithm as described in <a target="_blank" href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS 180-4</a> (FIPS are official US government standards; it stands for Federal Information Processing Standards). I also looked at <a target="_blank" href="https://www.movable-type.co.uk/scripts/sha256.html">this implementation</a> to check my understanding.</p>
+
+<h3>Preprocessing</h3>
+<p>The initial hash value is </p>
+<pre>
+    6a09e667
+    bb67ae85
+    3c6ef372
+    a54ff53a
+    510e527f
+    9b05688c
+    1f83d9ab
+    5be0cd19
+</pre>
+<p>(This is the first sixty-four bits of the fractional parts of the square roots of the ninth through sixteenth smallest prime numbers.)</p>
+<p>Take the input that is to be hashed. Add a 1 bit to it. Then add enough zeros so that the total length of the message will be equal to 448 mod 512. Add the length of the original input, in 64-bit binary. The length of the input should now be a multiple of 512 bits.</p>
+
+<h3>Computation: Schedule</h3>
+<p>For each 512 block of the preprocessed message:</p>
+<ul>
+    <li>First, take the first 16 32-bit sections of the message and put it in a new output array we'll call "schedule"</li>
+    <li>Then, 48 times, get the 2nd-to-last, 15th-to-last, and 16th-to-last 32-bit sections of the current schedule<br>
+        <ul>
+            <li>take the second-from-last section and<br>
+                <ul>
+                    <li>rotate its bits 17 places</li>
+                    <li>rotate its bits 19 places</li>
+                    <li>shift its bits right (replacing the left bits with zeros) 10 places</li>
+                    <li>xor together the output of the two rotations and the shift</li>
+                    <li>add this on to the schedule</li>
+                </ul>
+            </li>
+            <li>take the fifteenth-from-last section and
+                <ul>
+                    <li>rotate its bits 7 places</li>
+                    <li>rotate its bits 18 places</li>
+                    <li>shift its bits right (replacing the left bits with zeros) 3 places</li>
+                    <li>xor together the output of the two rotations and the shift</li>
+                    <li>add this on to the schedule</li>
+                </ul>
+            </li>
+            <li>add the 16th-to-last section to the schedule</li>
+        </ul>
+    </li>
+    <li>Set variables a,b,c,d,e,f,g,h to each byte of the current hash, respectively. Remember that the first time around, the hash will have the initial values set in preprocessing.</li>
+    <li>64 times
+        <ul>
+            <li>change a through h in the following way:
+                <ul>
+                    <li>save a variable t1 as the sum of
+                        <ul>
+                            <li>h</li>
+                            <li>the following values xor'ed together
+                                <ul>
+                                    <li>e rotated right 6 places</li>
+                                    <li>e rotated right 11 places</li>
+                                    <li>e rotated right 25 places</li>
+                                </ul>
+                            </li>
+                            <li>the following values xor'ed together
+                                <ul>
+                                    <li>bitwise and of e and f</li>
+                                    <li>bitwise and of (not e) and g</li>
+                                </ul>
+                            </li>
+                            <li>the 32-bit section of a constant K (defined in section 4.2.2 of the paper) corresponding to how many times we've gone through this loop. That is, first use the first byte, then the second, ...</li>
+                            <li>the 32-bit section of the schedule that we defined above corresponding to how many times we've gone through this loop</li>
+                        </ul>
+                    </li>
+                    <li>save a variable t2 as the sum of
+                        <ul>
+                            <li>the following values xor'ed together
+                                <ul>
+                                    <li>a rotated 2 places</li>
+                                    <li>a rotated 13 places</li>
+                                    <li>a rotated 22 places</li>
+                                </ul>
+                            </li>
+                            <li>the following values xor'ed together
+                                <ul>
+                                    <li>the bitwise and of a and b</li>
+                                    <li>the bitwise and of a and c</li>
+                                    <li>the bitwise and of b and c</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>set h to g</li>
+                    <li>set g to f</li>
+                    <li>set f to e</li>
+                    <li>set e to d + t1</li>
+                    <li>set d to c</li>
+                    <li>set c to b</li>
+                    <li>set b to a</li>
+                    <li>set a to t1 + t2</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>then update each hash value, adding the corresponding variable (a for the first, b for the second,... h for the last) to the previous value of the hash</li>
+</ul>
+<p>Now, we pull together each of our eight 32-bit hash pieces to get the final 256-bit output.</p>

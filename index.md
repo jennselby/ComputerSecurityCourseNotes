@@ -18,6 +18,8 @@ layout: default
 
 {% include cryptography_purposes.html %}
 
+{% include cryptography_recommendations.html %}
+
 {% include cryptography_password_storage.html %}
 
 {% include cryptography_diffie_hellman.html %}
@@ -29,6 +31,10 @@ layout: default
 {% include cryptography_symmetric_key.html %}
 
 {% include cryptography_bitcoin.html %}
+
+{% include cryptography_sha256.html %}
+
+{% include cryptography_elliptic_curve.html %}
 
 # User Input Validation
 
