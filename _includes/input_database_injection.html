@@ -1,0 +1,51 @@
+<h2>Database Injection</h2>
+<p>Programs frequently store information in <a target="_blank" href="http://www.ucl.ac.uk/archaeology/cisp/database/manual/node1.html">databases</a>. Databases allow programmers to write queries that ask for particular subsets of the data stored. For instance, an online shopping site might need queries that allow them to find all items in a certain department with certain words in their description that can ship to the location of the current user, ordered by customer rating first and then by price. Most of the information for this query came from users at one point or another (their address when they signed up, the search terms just now, etc.), which means that we cannot just trust it.</p>
+<p>Simplifying our example a bit, let's say we wanted to look for any book whose subject is "Computer Security". In a query language like <a target="_blank" href="https://www.w3schools.com/sql/">SQL</a>, this would be something like</p>
+<pre>
+SELECT title, price, rating, subject
+    FROM products
+    WHERE type='book' AND subject='Computer Security';
+</pre>
+<p>In another popular type of database, <a target="_blank" href="https://docs.mongodb.com/manual/introduction/">MongoDB</a>, it might look like</p>
+<pre>
+products.find(
+    {type: 'book', subject: 'Computer Security'},
+    {title: 1, price: 1, rating: 1, subject: 1}
+)
+</pre>
+<p>If all our queries were like this, where we knew ahead of time what we were searching for, that would be great, because we can write everything out like above. But usually, we are going to be wanting something more like this</p>
+<pre>
+query = "SELECT title, price, rating, subject " +
+            "FROM products " +
+            "WHERE type='" + type + "' AND subject='" + subject + "';"
+</pre>
+<p>because had the user enter what type and subject they are searching for and we stored those in variables. But now we have a problem. What if the user typed in for the subject</p>
+<pre>; DROP TABLE products;</pre>
+<p>The first semicolon ends our select statement. It makes the statement malformed, which is an error, but typically the database will just move on to the next command, which the user supplied. In this example, it is a drop command that tells the database to delete all of the information in our products table!</p>
+<p><img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" alt="" width="666" height="205"></p>
+<p>While the person in this <a target="_blank" href="https://xkcd.com/327/">XKCD comic</a> should have picked a better way to let the school know, she is right that input sanitization/validation is really important! <strong>Sanitization</strong> and <strong>validation</strong> typically involve
+    <ul>
+        <li>getting rid of any malformed or uninterpretable input</li>
+        <li>removing or escaping anything disallowed because it has special meaning in the language in which it will be interpreted</li>
+        <li>checking that the user's input satisfies your assumptions and expectations (e.g. that the input to a date field is actually a date that is in a reasonable timeframe)</li>
+    </ul>
+</p>
+<p>These checks will look slightly different in each language/database combination. Often, there are libraries that will perform many of these safety checks for you. One example of this is using SQL prepared statements. These are objects that are partially compiled and just waiting for some parameters of a specified type. Putting in something totally different causes no response or an error response and cannot be interpreted as the start of a new command. Here's an example in PHP <a target="_blank" href="https://www.w3schools.com/php/php_mysql_prepared_statements.asp">from W3 Schools</a>:</span></p>
+<pre>
+<span style="color: black;">
+<span style="color: green;">// prepare and bind</span>
+$stmt = $conn-&gt;prepare(
+    <span style="color: brown;">"INSERT INTO MyGuests (firstname, lastname, email)
+    VALUES (?, ?, ?)"</span>
+);
+$stmt-&gt;bind_param(<span style="color: brown;">"sss"</span>, $firstname, $lastname, $email);
+
+<span style="color: green;">// set parameters and execute</span>
+$firstname = <span style="color: brown;">"John"</span>;
+$lastname = <span style="color: brown;">"Doe"</span>;
+$email = <span style="color: brown;">"john@example.com"</span>;
+$stmt-&gt;execute();
+</span>
+</pre>
+<p>The software will now specifically verify the values of the variables firstname, lastname, and email before passing them in to replace the three question marks, in order. The bind_param function allows you to specify what type each variable should hold (all strings, in this example).</p>
+<p>Similarly, by default MongoDB will <a target="_blank" href="https://docs.mongodb.com/manual/reference/configuration-options/#net.wireObjectCheck">run some checks</a> on all requests. There are also <a target="_blank" href="https://www.npmjs.com/package/mongo-sanitize">packages to help with sanitization</a> to guard against certain kinds of attacks.</p>

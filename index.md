@@ -36,7 +36,13 @@ layout: default
 
 {% include cryptography_elliptic_curve.html %}
 
-# User Input Validation
+# Input Validation
+
+{% include input_validation_eval.html %}
+
+{% include input_cross_site_scripting.html %}
+
+{% include input_database_injection.html %}
 
 # Authorization
 
