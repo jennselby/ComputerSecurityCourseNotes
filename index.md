@@ -44,6 +44,12 @@ layout: default
 
 {% include input_database_injection.html %}
 
+{% include input_buffer_overflows.html %}
+
+{% include input_specially_crafted_files.html %}
+
+{% include input_null_pointer_dereferences.html %}
+
 # Authorization
 
 # Forensics
