@@ -50,8 +50,16 @@ layout: default
 
 {% include input_null_pointer_dereferences.html %}
 
-# Authorization
 
-# Forensics
 
-# Reverse Engineering
+{% include authorization.html %}
+
+{% include forensics.html %}
+
+# Extra Topics
+
+{% include reverse_engineering.html %}
+
+
+
+{% include online_exercises.html %}

@@ -1,0 +1,45 @@
+<h1>Forensics</h1>
+<p>Computer forensics is all about knowing where to look to find traces of the past. Depending on what the problem is, you might need to piece together a timeline of what happened on a particular computer, recover data that used to be on a hard drive or CD or DVD or USB stick, trace network traffic to its source, or find information hidden in some data or code.</p>
+<p>Here is a more formal definition from page 16 of <a target="_blank" href="http://dfrws.org/sites/default/files/session-files/a_road_map_for_digital_forensic_research.pdf">The Digital Forensics Research Workshop</a>:
+<blockquote>The use of scientifically derived and proven methods toward the preservation, collection, validation, identification, analysis, interpretation, documentation and presentation of digital evidence derived from digital sources for the purpose of facilitating or furthering the reconstruction of events found to be criminal, or helping to anticipate unauthorized actions shown to be disruptive to planned operations.</blockquote></p>
+<p>The tools and techniques you use are going to be very dependent on the particular problem you are trying to solve. Whatever the system, you want to be familiar with what a normal state of the system looks like, and you want to know what anomalies to look out for. One technique for generating data on what attacks look like are honeypots, machines that no legitimate users are using. Any connections to these machines are by definition suspect and can give you a sense of what attacks might be happening on your real machines, drowned out in a sea of legitimate activity. See <a target="_blank" href="https://www.newscientist.com/article/dn8403-viral-cure-could-immunise-the-internet/">these</a> <a target="_blank" href="http://bit.ly/2pm8Ay2">articles</a> and <a target="_blank" href="http://www.honeynet.org">The Honeynet Project</a>.</p>
+<p>Below are some tools that might be useful when examining a machine running OSX.</p>
+<ul>
+    <li>Log files
+        <ul>
+            <li><strong>sudo dmesg </strong>will show you the recent system messages</li>
+            <li>the directory <strong>/var/log </strong>contains many of the log files for your system</li>
+            <li>the <strong>Console</strong> app pulls together many log files and allows you to filter them</li>
+        </ul>
+    </li>
+    <li>System State
+        <ul>
+            <li><strong>sudo ps -ef</strong> will show you all processes running on your computer</li>
+            <li><strong>top -u</strong> will also will show you all processes running on your computer, ordered by the amount of CPU they are using, and <strong>top -o mem</strong> will order by memory usage</li>
+            <li>the<strong> Activity Monitor</strong> app will give you a view very similar to top</li>
+            <li><strong>uname -a</strong> will tell you information about your operating system and kernel version</li>
+            <li>the <strong>System Information </strong>app will give you information about the hardware in your system as well as some of the network setting and system preferences</li>
+        </ul>
+    </li>
+    <li>Filesystem
+        <ul>
+            <li><strong>ls -lh</strong> can give you more information about the files in a directory (Use <strong>ls -ldh</strong> if you want to see information about the directory itself)</li>
+            <li><strong>mdls <em>filename</em></strong> will list the file's metadata keys and their values</li>
+            <li>Hitting <strong>Command+i</strong> in when you have a file selected in Finder will open up a window with metadata information.</li>
+            <li>You can look inside of applications, either by using the command line to cd into /Applications/SomeApp.app/Contents or by right clicking on the application in Finder and selecting "Show Package Contents"</li>
+            <li><strong>sudo lsof</strong> will show you all files that are currently open, and what processes are using them</li>
+            <li><strong>df</strong> <strong>-h </strong>will give you information about the hard drive partitions</li>
+            <li><strong>du -hs</strong> will give you information about how much space each directory is taking up (this can take a long time, if you have a lot in the current directory)</li>
+            <li>the <strong>Disk Utility</strong> app can show you some information about what is on your hard disks</li>
+            <li><a target="_blank" href="http://www.sleuthkit.org/">Sleuth Kit</a> provides various tools that can help you with file system analysis</li>
+        </ul>
+    </li>
+    <li>Local network stats
+        <ul>
+            <li>the <strong>Network Utility </strong>app can show you various stats about your network usage and state. Most of the tabs there are also the names of the command line tools that provide the same or similar information -- <strong>netstat, ping, traceroute, whois, finger</strong> -- but some have different names. The command line utility for lookup is called <strong>dig</strong>. For port scan, try <strong>nmap --top-ports 100 localhost </strong>(<strong><em>Note that running nmap on a machine other than localhost might be considered hostile by the machine's administrator, unlike ping or traceroute. Only run this with localhost.</em></strong>)</li>
+            <li><strong>nettop </strong>will show you the various network connections that are open and what processes are using them.</li>
+            <li>Want to see what your browser is sending in the HTTP requests? Run <strong>nc -l 3000</strong> and then visit <a target="_blank" href="http://localhost:3000">http://localhost:3000</a> in your browser.</li>
+            <li>Want to look at a network capture (.pcap) file as part of an exercise? You can use <a target="_blank" href="https://packettotal.com/">https://packettotal.com/</a> (Most programs that can read pcap files can also capture network traffic. You may not install programs that capture live internet traffic on your school laptop nor run any such programs while connected to the school network.)</li>
+        </ul>
+    </li>
+</ul>
