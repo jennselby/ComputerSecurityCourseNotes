@@ -63,3 +63,5 @@ layout: default
 
 
 {% include online_exercises.html %}
+
+{% include resources.html %}
