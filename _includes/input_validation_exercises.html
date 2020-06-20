@@ -1,0 +1,41 @@
+<h2>Input Validation Exercises</h2>
+<p>Show your understanding of at least one of the potential input validation failures discussed above by
+    <ul>
+        <li>writing code and notes demonstrating a successful break on a system meant for testing -- not on a production system and not on one maintained by someone unaware of what you are doing</li>
+        <li>writing code and notes that demonstrate changes that would prevent your break</li>
+        <li>giving the name of a specific law you might be charged with if you were to do this on a system without permission, with a citation to a story or source that demonstrates why that law might apply</li>
+    </ul>
+</p>
+
+<p>Below are different suggestions of test systems that you could use for this assignment. You could similarly use an exercise from a computer security practice site, like the ones listed <a class="jump-to-section" href="#online-exercises">here</a>.</p>
+
+<ul>
+    <li>Eval: Suppose someone has a very simple Python 2 script:
+        <pre>
+favorite = input('What is your favorite number? ')
+print 'I like the number {}, too!'.format(favorite)
+        </pre>
+
+    They claim that it's a harmless script and it would be safe to let anyone interact with it. Show examples of input to this program that would give you access to their information (e.g. the contents of a file on their machine).</li>
+    <li>Cross-site scripting: Go to <a target="_blank" href="assets/code/comments.html">this page</a> and try entering some comments. Make your comments fancier by using some HTML tags. Write a comment that will cause some JavaScript to run.</li>
+    <li>Database injection: In the classroom during this time, a minimal webserver will be running on port 3502 of a class laptop, and we'll provide the IP address then. Go to http://&lt;ip&gt;:3502 and attempt to log in through the form. If the site is down, please let the teacher know ASAP. Since the code was deliberately made vulnerable, this meant avoiding many libraries that would have made it more stable. You do have permission to try to hack this computer in any way you would like, but please do your best not to do anything to it that would make it hard for other students to use it. Remember not to put anything private on there (this includes typing a password for any other account)!</li>
+    <li>Buffer overflow: If you haven't installed the XCode command line tools before, in Terminal run
+        <pre>xcode-select --install</pre>
+        If you haven't used C before, spend some time experimenting with the test program <a target="_blank" href="assets/code/pointer_demo.c">pointer_demo.c</a> to get some sense of how pointers work. To compile and run this program, run the following two lines in Terminal, in the directory where you downloaded the file:
+        <pre>
+gcc -o pointer_demo pointer_demo.c
+./pointer_demo
+        </pre>
+        Take a look at the <a target="_blank" href="assets/code/buffer_overflow.c">buffer_overflow.c</a> example code. You can compile it and run it using
+        <pre>
+gcc buffer_overflow.c
+./a.out some_password
+        </pre>
+        First, read the code to figure out what the actual password is and verify that you are granted access if you give this password. Now, compile it with some extra flags that will disable various security measures:
+        <pre>
+gcc -fno-stack-protector -D_FORTIFY_SOURCE=0 buffer_overflow.c
+        </pre>
+        Find a password that is not the correct one but does grant you access.
+        (This code comes from <a target="_blank" href="http://stackoverflow.com/questions/34247068/buffer-overflow-does-not-work-on-mac-osx-el-capitan">this stackoverflow post</a> which has one possible buffer overflow solution, though it doesn't work on all computers, because it depends on how the compiler lays things out.)
+    </li>
+</ul>

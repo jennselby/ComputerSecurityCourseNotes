@@ -36,6 +36,8 @@ layout: default
 
 {% include cryptography_elliptic_curve.html %}
 
+{% include cryptography_exercises.html %}
+
 # Input Validation
 
 {% include input_validation_eval.html %}
@@ -49,6 +51,8 @@ layout: default
 {% include input_specially_crafted_files.html %}
 
 {% include input_null_pointer_dereferences.html %}
+
+{% include input_validation_exercises.html %}
 
 
 

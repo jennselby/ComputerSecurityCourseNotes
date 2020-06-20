@@ -1,0 +1,61 @@
+<h2>Cryptography Exercises</h2>
+
+<h3>Exploratory Practice</h3>
+<p>Try to use some of the cryptographic tools we're been talking about. Keep notes on what you do and learn. Here are some suggestions for things to try:</p>
+<ul>
+    <li>Send an encrypted email to another person in the class, such that only they can read it. What tools exist to let you do this, and how well do they work?</li>
+    <li>Send an email to another person in the class that has been cryptographically signed. What tools exist to let you do this, and how well do they work?</li>
+    <li>If you have a website that does not currently support https, use <a target="_blank" href="https://letsencrypt.org/getting-started/">Let's Encrypt</a> create a certificate for your site.</li>
+    <li>Figure out what Certificate Authorities your browser trusts.</li>
+    <li>Hash some string (or have a partner do it). Test out the properties of the hashing function, noting how much the output changes from small input changes. Write a program that will try some brute force solution to figure out the string by finding a matching hash. Observe how the length of time varies based on the string you use and the way you structure your search. Try this with different hash functions, to see the differences in speed.</li>
+    <li>Look at some different accounts you have and see what level of security they provide.</li>
+        <ul>
+            <li>Try turning on two-factor authentication, if you have that option.</li>
+            <li>Look at their security questions and figure out roughly how many different options there are, assuming you answer honestly. For instance, if it is asking for the model of your first car, get an estimate of how many different car models have ever been made.</li>
+            <li>Think about how secure your password is, relative to how attackers would try to guess it. Is it a relatively common word? Is it in the dictionary? Is it all lower case letters, or do you also include uppercase letters, numbers, and/or symbols? Think about how large a search space is needed to find your password. Do some research on current recommendations on password length and generation.</li>
+        </ul>
+    <li>Try encrypting and decrypting files. What are the different tools out there that provide this service? What do encrypted files look like?</li>
+    <li>Generate a public/private key pair for yourself. Put the public key on our test laptop so that you can SSH into your account without typing a password. You could also use this key for your Github account, if you have one.</li>
+</ul>
+
+<h3>Design a System with Cryptographic Components</h3>
+
+<p>Choose a scenario in which different entities (people or machines) need to pass sensitive information between them. Design a system that makes this information passing more secure.</p>
+
+<p>Work alone or in a group of up to three people.</p>
+
+<p><strong>Required:</strong> Include a description of your threat model. What are ways that your system might be compromised? Which of those is your design addressing? It's OK not to handle everything, but you want it to be a deliberate choice.</p>
+
+<p><strong>Required:</strong> Describe the basic cryptographic components that are part of your design and how they are used. (e.g. "a public key algorithm with large enough keys to likely be secure through 2030"). See, for instance, this <a target="_blank" href="https://www.keylength.com/en/4/">keylength recommendation tool.</a></p>
+
+<p><strong>Required:</strong> Describe the steps of your protocol, e.g.
+    <ol>
+        <li>Alice sends a message to Bob, encrypted with his public key.</li>
+        <li>Bob sends the same message back to Alice, encrypted with her public key.</li>
+    </ol>
+</p>
+
+<p><strong>Optional:</strong> Implement some pieces of your system in code. You can either use cryptographic libraries or attempt to implement some of your own.</p>
+
+<p>Here are some examples of scenarios that you could use. Some of these are large systems, so you don't want to describe the whole system, but just a specific piece of it.
+    <ul>
+        <li>check-in/check-out system at a school</li>
+        <li>security gate at parking garage</li>
+        <li>electronic money transfer</li>
+        <li>password storage system</li>
+        <li>email</li>
+        <li>chat</li>
+        <li>software update system</li>
+        <li>voting machine</li>
+        <li>medical devices with wifi or some other communication</li>
+        <li>exchanging information with an undercover informant</li>
+        <li>IT department at a school or company</li>
+    </ul>
+</p>
+
+<h3>Example Protocols</h3>
+<ul>
+    <li><a target="_blank" href="https://docs.google.com/document/d/10JAHs8VlbYMkurMoGqv_2wSg5SKMcXZnzMBFAnfWMFE/edit?usp=sharing">Protocol for access to servers for new employees and departing employees</a></li>
+    <li><a target="_blank" href="https://docs.google.com/document/d/1WkxcIHhDiq9KVgXBb2x_SpDktxjurl9R55Kk3budmiU/edit?usp=sharing">Protocol for browsers authenticating websites</a></li>
+</ul>
+<p>Yours do not have to be this long or wordy. These are longer to make sure they would be understandable.</p>
