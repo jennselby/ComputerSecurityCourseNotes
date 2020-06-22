@@ -23,3 +23,17 @@
         <p>If security is a priority for the system you are working on, it is almost always better to deny by default and only allow a small set of specific people or groups rather than to allow by default and deny some specific people or groups.</p>
     </li>
 </ol>
+
+<h2>Authorization Exercises</h2>
+
+<p>Respond to at least one of the authorization-related prompts below. Take notes as you do your research.</p>
+
+<ul>
+    <li>On UNIX-based systems like OSX, directory and file permissions are generally made up of three groups of three: read, write, and execute permissions for the individual owner, the group owner, and everyone else. You can view the permissions in Terminal with "ls -l" and change the permissions in Terminal with <a target="_blank" href="https://www.computerhope.com/unix/uchmod.htm">chmod</a>. Create a test file and see what permissions it is given by default, then try changing the permissions on it. Take a look at the permissions of some of the directories and files on your computer. Do they make sense to you? Why do you think they have the permissions they do? <strong>Optional coding extension</strong>: Write a script to find any files in your home directory (your folder in /Users/) that are writeable by someone other than you. Do these permissions seem safe to you?</li>
+    <li>Some programs <a target="_blank" href="http://linuxg.net/how-to-set-the-setuid-and-setgid-bit-for-files-in-linux-and-unix/">can be set to execute with the privileges of the file owner rather than the user who is running the program</a>. Why do you think this might be useful? Why is it dangerous?</li>
+    <li>When you type "sudo" at the Terminal, you are telling the program to run as the superuser, AKA root AKA Admin. Do some research to find some things that the superuser can do that a normal user cannot.</li>
+    <li><a target="_blank" href="https://ist.njit.edu/afs-permissions">AFS has more fine-grained permissions than the standard UNIX filesystem</a>. Instead of rwx (read, write, execute), it has rlidwka (read, lookup, insert, delete, write, lock, administer). Come up with scenarios where you might want to have this level of control instead of being limited to the UNIX permissions.</li>
+    <li>Look at the permissions that some of the apps have on your phone. Explain why they might need these permissions.</li>
+    <li>Find examples of security breaches that resulted at least in part because programmers had made mistakes and not followed our Authorization principles.</li>
+    <li>Pick an example website or app and list some pages where they should be checking to make sure the user should be able to access that page. <strong>Optional coding extension</strong>: Find a tutorial about how to add authentication to an app (<a target="_blank" href="https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial">this, for example</a>) and then add some pages where you explicitly check that the user should be able to access them.</li>
+</ul>
