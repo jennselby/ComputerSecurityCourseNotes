@@ -10,7 +10,9 @@ layout: default
 
 {% include personal_ethics_rules.html %}
 
-# Threat Modeling
+
+{% include threat_modeling.html %}
+
 
 # Cryptography
 
