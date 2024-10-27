@@ -43,6 +43,16 @@
         </ul>
     </li>
 </ul>
+<h2>Metrics</h2>
+<p>Additionally, forensics (also called integrity metrics or just metrics) are often used to monitor and protect digital assets, like accounts. For example, let's say you're running a service with millions of accounts, like TikTok, and you want to know if someone is trying to hack an account, or has successfully hacked an account. Some ways you might measure this:</p>
+    <ul>
+        <li>Password resets: across the entire site, how many people request a password reset each day? If this number spikes suddenly, that might indicate an attacker trying to break into accounts.</li>
+        <li>% MFA: what percentage of accounts are protected by multi-factor authentication? </li>
+        <li>Superman mode: for an individual account, we can track the IP address where they log in, and know roughly where they are. If they log in from California, and then an hour later log in from Russia, chances are pretty good they're getting hacked by someone in Russia</li>
+        <li>Time of day: most people tend to have predictable patterns of site usage; for instance, some Nueva students might watch a lot of TikTok between 8:15 and 8:55am, and 3:15-3:55 pm, when they're on the train. If someone is logging in and showing activity during a time of day they don't normally do so, their account might be compromised.</li>
+        <li>Location history: similar to time of day and superman mode, location history tracks where you log in from; even if your account isn't going superman, if it suddenly starts logging in from another part of the world, it might be compromised.</li>
+    </ul>
+
 <h2>Forensics Exercises</h2>
 <p>Respond to at least one of the forensics-related prompts below. Take notes as you do your research.</p>
 
@@ -66,11 +76,3 @@
             <li><a target="_blank" href="https://www.cfreds.nist.gov/">https://www.cfreds.nist.gov/</a> There are various different datasets and tools here. Some are very specific, but others are broader problems.</li>
             <li><a target="_blank" href="http://www.forensickb.com/2010/01/forensic-practical-exercise-3.html">http://www.forensickb.com/2010/01/forensic-practical-exercise-3.html</a> This problem involves a USB disk image that once held an important number.</li>
         </ul>
-</ul>
-<p>Additionally, forensics (also called integrity metrics or just metrics) are often used to monitor and protect digital assets, like accounts. For example, let's say you're running a service with millions of accounts, like TikTok, and you want to know if someone is trying to hack an account, or has successfully hacked an account. Some ways you might measure this:</p>
-    <ul>
-        <li>Password resets: across the entire site, how many people request a password reset each day? If this number spikes suddenly, that might indicate an attacker trying to break into accounts.</li>
-        <li>% MFA: what percentage of accounts are protected by multi-factor authentication? </li>
-        <li>Superman mode: for an individual account, we can track the IP address where they log in, and know roughly where they are. If they log in from California, and then an hour later log in from Russia, chances are pretty good they're getting hacked by someone in Russia</li>
-        <li>Time of day: most people tend to have predictable patterns of site usage; for instance, some Nueva students might watch a lot of TikTok between 8:15 and 8:55am, and 3:15-3:55 pm, when they're on the train. If someone is logging in and showing activity during a time of day</li>
-    </ul>
